@@ -7,7 +7,6 @@ import "./index.scss";
 
 export const Hero: React.FC = () => {
   const allPokemons = useAppSelector((state) => state.pokemons.pokemonsList);
-  const loadingState = useAppSelector((state) => state.pokemons.status);
   const [input, setInput] = useState("");
   const [foundPokemons, setFoundPokemons] =
     useState<typeof allPokemons>(allPokemons);
@@ -43,12 +42,7 @@ export const Hero: React.FC = () => {
           />
           <img className="pokemon-search__img" src={IMGpikachu} alt="pikachu" />
         </div>
-        {loadingState === "loading" && (
-          <h1 className="loading__title">Loading....</h1>
-        )}
-        {loadingState === "resolved" && (
-          <PokemonsList pokemonsList={foundPokemons} />
-        )}
+        <PokemonsList pokemonsList={foundPokemons} />
       </div>
     </section>
   );

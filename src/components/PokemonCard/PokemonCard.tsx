@@ -5,21 +5,22 @@ import { Header } from "../Header/Header";
 import "./index.scss";
 
 export const PokemonCard: React.FC = () => {
-  const { state } = useLocation();
   const [data, setData] = useState<IData>();
-
+  const [img, setIMG] = useState<string>();
+  let location = useLocation();
   useEffect(() => {
     async function fetchPokemon() {
-      const response = await fetch(state.url);
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon${location.pathname}`
+      );
       let data = await response.json();
+      setIMG(
+        `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`
+      );
       setData(data);
     }
     fetchPokemon();
-  }, [state]);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  }, [location]);
 
   interface IData {
     abilities?: [];
@@ -109,11 +110,7 @@ export const PokemonCard: React.FC = () => {
               <div className="pokemon__img-box">
                 {data.sprites.other["official-artwork"]["front_default"] !==
                 null ? (
-                  <img
-                    className="pokemon__img"
-                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`}
-                    alt="pokemon image"
-                  />
+                  <img className="pokemon__img" src={img} alt="pokemon image" />
                 ) : (
                   <h1
                     style={{
@@ -150,4 +147,3 @@ export const PokemonCard: React.FC = () => {
   );
 };
 export default PokemonCard;
-// СДЕЛАТЬ ПОИСК, ПАГИНАЦИЮ, И НОРМАЛЬНОЕ ОТОБРАЖЕНИЕ ЗАГРУЗКИ КАРТОЧКИ

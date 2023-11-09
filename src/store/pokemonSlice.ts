@@ -29,17 +29,14 @@ const PokemonSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchPokemonsData.pending, (state) => {
-      console.log("render pend");
       state.status = "loading";
       state.error = null;
     });
     builder.addCase(fetchPokemonsData.fulfilled, (state, action) => {
-      console.log("render gotov ");
       state.status = "resolved";
       state.pokemonsList = action.payload.data.results;
     });
     builder.addCase(fetchPokemonsData.rejected, (state) => {
-      console.log("render");
       state.status = "rejected";
       state.error = true;
       alert("Error connecting to server, try again later");

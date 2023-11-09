@@ -1,7 +1,6 @@
 import React from "react";
 import { PokemonMiniCard } from "../PokemonMIniCard/PokemonMiniCard";
 import { Link } from "react-router-dom";
-
 import "./index.scss";
 
 interface PokemonsListProps {
@@ -16,11 +15,7 @@ const PokemonsList: React.FC<PokemonsListProps> = ({ pokemonsList }) => {
       {pokemonsList &&
         pokemonsList.map((pokemon, index) => {
           return (
-            <Link
-              state={{ url: pokemon.url, number: index + 1 }}
-              key={index}
-              to={`/${pokemon.name}`}
-            >
+            <Link key={index} to={`/${pokemon.name}`}>
               <PokemonMiniCard name={pokemon.name} number={index + 1} />
             </Link>
           );
