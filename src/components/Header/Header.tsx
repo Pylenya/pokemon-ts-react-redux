@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import IMGpokeball from "/pokeball.png";
+import IMGpokeball from "../../images/pokeball.png";
 import "./index.scss";
 
 export const Header: React.FC = () => {

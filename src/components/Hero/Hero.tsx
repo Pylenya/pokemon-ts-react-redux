@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../../hook";
 import PokemonsList from "../PokemonsList/PokemonsList";
-import IMGpikachu from "/pikachu.png";
+import IMGpikachu from "../../images/pikachu.png";
 
 import "./index.scss";
 
